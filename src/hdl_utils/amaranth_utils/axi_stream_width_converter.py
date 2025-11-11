@@ -248,7 +248,7 @@ class AXIStreamWidthConverter(Elaboratable):
         if self.convertion_mode in [self.DOWN, self.UP]:
             m.submodules.converter = self.converter
         elif self.convertion_mode == self.NONE:
-            self.sink.connect(m, self.source)
+            self.sink.as_master().connect(m, self.source.as_slave())
         else:
             m.submodules.converter_up = self.converter_up
             m.submodules.converter_down = self.converter_down
